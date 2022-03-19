@@ -5,6 +5,12 @@ If possible, it will create BtrFS subvolume, and disable the CoW.
 #### depends on:
 
 * bubblewrap
+* qemu-user binary (static linked)
+  ```bash
+  # can be installed on gentoo linux by:
+  echo "app-emulation/qemu static-user QEMU_USER_TARGETS: riscv32 riscv64" >>/etc/portage/package.use/qemu
+  emerge -vj app-emulation/qemu --autounmask
+  ```
 
 #### init
 
