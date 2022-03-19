@@ -14,7 +14,7 @@ if [[ -d ${rootfs} ]]; then
   if btrfs inspect-internal rootid ${_PARENT} &>/dev/null; then
     set -- btrfs subvolume delete ${rootfs}
   else
-    set -- rm -rf ${rootfs}*
+    set -- rm -rf ${rootfs}
   fi
 
   echo ">>> ${@}"
