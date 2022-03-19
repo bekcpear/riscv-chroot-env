@@ -25,6 +25,8 @@ If possible, it will create a BtrFS subvolume to store the stage3 files, and dis
 ./getLatest.sh # default to use 'rv64_lp64d-openrc'
 
 ./createRootFS.sh [instance-name] # this name should not be started in a '-'
+# if no instance-name val provided, the default is 'default' (same below),
+# and you can change it under the ./env file.
 ```
 
 #### chroot *(the daily used)*
@@ -37,8 +39,9 @@ If possible, it will create a BtrFS subvolume to store the stage3 files, and dis
 #### update portage config
 ```bash
 ./updateEnv.sh [instance-name]
-# the default behavior will override existed files
-# you can change it under the ./env file
+# the default behavior will override existed files,
+# and you can change it under the ./env file.
+# it will be called when `createRootFS.sh` called
 ```
 
 #### clear tmpfs
@@ -48,6 +51,7 @@ If possible, it will create a BtrFS subvolume to store the stage3 files, and dis
 # to make portage log files, build logs and others
 # accessible from the outside.
 ./clearMount.sh [instance-name]
+# it will be called when `deleteRootFS.sh` called
 ```
 
 #### destroy
