@@ -15,7 +15,11 @@ If possible, it will create BtrFS subvolume, and disable the CoW.
 #### init
 
 ```bash
+# Get the latest stage3 tarball
+#   you need create your preferred path to store the stage3 first, and modify this script
+#   the default path is './stage3-files'
 ./getLast.sh
+
 ./createRootFS.sh
 ```
 
