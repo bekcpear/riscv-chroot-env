@@ -24,7 +24,7 @@ bwrap \
 --proc /proc \
 --tmpfs /run \
 --perms 1777 --tmpfs /dev/shm \
---unshare-uts --hostname rv-qemuu-${rootfs##*/rootfs_} \
+--unshare-uts --hostname rv-qemuu-${rootfs##*/rootfs/} \
 "${@}" \
 /bin/bash --login
 
