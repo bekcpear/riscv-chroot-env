@@ -3,6 +3,10 @@
 
 set -e
 
+if [[ -n ${myArrays} ]]; then
+  eval "${myArrays}"
+fi
+
 if [[ -n ${_PREPROCESSED} ]]; then
   return
 fi
@@ -33,8 +37,11 @@ files=(
 vars=(
   default_instance
   force_update
-  ignore_patterns
   mirror_url
+  )
+
+arrays=(
+  ignore_patterns
   )
 
 for f in ${dirs[@]} ${files[@]}; do
@@ -70,3 +77,11 @@ done
 for f in ${dirs[@]} ${files[@]} ${vars[@]}; do
   eval "export ${f}"
 done
+
+# export arrays, but with declare format
+# bug: https://www.mail-archive.com/bug-bash@gnu.org/msg01774.html
+# see also: https://stackoverflow.com/questions/5564418/exporting-an-array-in-bash-script
+for a in ${arrays[@]}; do
+  eval "myArrays+=\$'\n'\"\$(declare -p ${a})\""
+done
+export myArrays

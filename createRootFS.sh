@@ -22,7 +22,9 @@ fi
 echo "${@}"
 eval "${@}"
 
-set -- tar xpf ${stage3_dir}stage3-*.tar.xz -C ${rootfs} --xattrs --xattrs-include='*.*' --exclude='./dev/*'
+stage3=$(LC_ALL=C find ${stage3_dir} -name 'stage3-*.tar.xz' | tail -1)
+
+set -- tar xpf ${stage3} -C ${rootfs} --xattrs --xattrs-include='*.*' --exclude='./dev/*'
 echo "${@}"
 "${@}"
 
