@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 
+set -e
+
 . "$(dirname $(realpath $0))/preprocess.sh"
 
 findmnt ${rootfs}tmp/ >/dev/null && umount ${rootfs}tmp/ || true

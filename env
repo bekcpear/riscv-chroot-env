@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 
-rootfs="./rootfs/"
+default_instance="default"
+rootfs_path_prefix="./rootfs"
 stage3_dir="./stage3-files/"
 static_qemu_bin="/usr/bin/qemu-riscv64"

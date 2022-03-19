@@ -1,2 +1,4 @@
+*.swp
 /rootfs/**
+/rootfs_*/**
 /stage3-files/**

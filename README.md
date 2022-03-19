@@ -20,24 +20,24 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
 # Get the latest stage3 tarball
 ./getLast.sh
 
-./createRootFS.sh
+./createRootFS.sh [instance-name]
 ```
 
 #### chroot *(the daily used)*
 
 ```bash
-./chroot.sh
+./chroot.sh [instance-name]
 # you can set an alias to it use at any place
 ```
 
 #### clear tmpfs
 
 ```bash
-./clearMount.sh
+./clearMount.sh [instance-name]
 ```
 
 #### destroy
 
 ```bash
-./deleteRootFS.sh
+./deleteRootFS.sh [instance-name]
 ```
