@@ -5,7 +5,7 @@ set -e
 
 . "./env"
 
-cp /usr/bin/qemu-riscv64 ${rootfs}usr/bin/
+[[ -x ${rootfs}${static_qemu_bin#/} ]] || cp ${static_qemu_bin} ${rootfs}${static_qemu_bin#/}
 
 findmnt ${rootfs}tmp/ >/dev/null || mount --types tmpfs tmpfs ${rootfs}tmp/
 findmnt ${rootfs}var/tmp/ >/dev/null || mount --types tmpfs tmpfs ${rootfs}var/tmp/

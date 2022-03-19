@@ -3,3 +3,4 @@
 
 rootfs="./rootfs/"
 stage3_dir="./stage3-files/"
+static_qemu_bin="/usr/bin/qemu-riscv64"
