@@ -9,21 +9,21 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
   ```bash
   # can be installed on gentoo linux by:
   echo "app-emulation/qemu static-user QEMU_USER_TARGETS: riscv32 riscv64" >>/etc/portage/package.use/qemu
-  emerge -vj app-emulation/qemu --autounmask
+  emerge -vj app-emulation/qemu --autounmask # may should do somethings others by yourself here
   ```
 
 #### init
 
 ```bash
+# modify './env' to set to correct values
+
 # Get the latest stage3 tarball
-#   you need create your preferred path to store the stage3 first, and modify this script
-#   the default path is './stage3-files'
 ./getLast.sh
 
 ./createRootFS.sh
 ```
 
-#### chroot **(the daily used)**
+#### chroot *(the daily used)*
 
 ```bash
 ./chroot.sh

@@ -3,7 +3,9 @@
 
 set -e
 
-DIR="./stage3-files/"
+. "$(dirname $(realpath $0))/preprocess.sh"
+
+DIR="${stage3_dir}"
 URL="https://mirrors.bfsu.edu.cn/gentoo/releases/riscv/autobuilds/"
 TYPE="rv64_lp64d-openrc"
 INFO_TXT="${URL}latest-stage3-${TYPE}.txt"

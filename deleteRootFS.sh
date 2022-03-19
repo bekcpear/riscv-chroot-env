@@ -3,11 +3,11 @@
 
 set -e
 
-. "./env"
-
+myPath=$(dirname $(realpath $0))
+. "${myPath}/preprocess.sh"
 
 if [[ -d ${rootfs} ]]; then
-  ./clearMount.sh
+  ${myPath}/clearMount.sh
 
   _PARENT=$(dirname ${rootfs})
   mkdir -p ${_PARENT}

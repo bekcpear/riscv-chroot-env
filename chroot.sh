@@ -3,7 +3,7 @@
 
 set -e
 
-. "./env"
+. "$(dirname $(realpath $0))/preprocess.sh"
 
 [[ -x ${rootfs}${static_qemu_bin#/} ]] || cp ${static_qemu_bin} ${rootfs}${static_qemu_bin#/}
 
@@ -19,4 +19,5 @@ bwrap \
 --proc /proc \
 --tmpfs /run \
 --perms 1777 --tmpfs /dev/shm \
+"${@}" \
 /bin/bash --login

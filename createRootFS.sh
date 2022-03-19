@@ -3,7 +3,7 @@
 
 set -e
 
-. "./env"
+. "$(dirname $(realpath $0))/preprocess.sh"
 
 if [[ -e ${rootfs} ]]; then
   echo "exists"
