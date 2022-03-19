@@ -34,6 +34,10 @@ files=(
   static_qemu_bin
   )
 
+chroot_files=(
+  chroot_static_qemu_bin
+  )
+
 vars=(
   default_instance
   force_update
@@ -44,6 +48,8 @@ arrays=(
   ignore_patterns
   )
 
+
+# update to absolute path for files/dirs in the host environment
 for f in ${dirs[@]} ${files[@]}; do
   if [[ ! ${!f} =~ ^/ ]]; then
     eval "${f}=${myPath}/${!f}"
@@ -74,7 +80,7 @@ for f in ${dirs[@]}; do
 done
 
 # export variables
-for f in ${dirs[@]} ${files[@]} ${vars[@]}; do
+for f in ${dirs[@]} ${files[@]} ${chroot_files[@]} ${vars[@]}; do
   eval "export ${f}"
 done
 

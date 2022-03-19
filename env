@@ -18,5 +18,9 @@ stage3_dir="./stage3-files/"
 # mirror url for gentoo
 mirror_url="https://mirrors.bfsu.edu.cn/gentoo/"
 
-# the static linked qemu-user mode binary
+# the static linked qemu-user mode binary path in the host environment
 static_qemu_bin="/usr/bin/qemu-riscv64"
+
+# the static linked qemu-user mode binary path in the chroot environment
+# must be an absolute path
+chroot_static_qemu_bin="/usr/bin/qemu-riscv64"
