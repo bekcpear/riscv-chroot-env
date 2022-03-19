@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 
 set -e
@@ -26,4 +26,4 @@ set -- tar xpf ${stage3_dir}stage3-*.tar.xz -C ${rootfs} --xattrs --xattrs-inclu
 echo "${@}"
 "${@}"
 
-${myPath}/prepareEnv.sh
+${myPath}/updateEnv.sh

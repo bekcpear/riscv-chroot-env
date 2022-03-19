@@ -1,5 +1,3 @@
-#!/bin/bash
-#
 
 default_instance="default"
 rootfs_path_prefix="./rootfs"

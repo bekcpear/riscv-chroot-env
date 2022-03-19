@@ -1,12 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 
 set -e
-
-if [[ ${EUID} -ne 0 ]]; then
-  echo "should be root user for now!"
-  exit 1
-fi
 
 . "$(dirname $(realpath $0))/preprocess.sh"
 

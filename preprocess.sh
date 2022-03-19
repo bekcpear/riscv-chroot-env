@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 
 set -e
@@ -7,6 +7,11 @@ if [[ -n ${_PREPROCESSED} ]]; then
   return
 fi
 export _PREPROCESSED=1
+
+if [[ ${EUID} -ne 0 ]]; then
+  echo "should be root user for now!"
+  exit 1
+fi
 
 instance="${1}"
 shift || true

@@ -31,6 +31,11 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
 # you can set an alias to it use at any place
 ```
 
+#### update portage config
+```bash
+./updateEnv.sh [instance-name]
+```
+
 #### clear tmpfs
 
 ```bash
