@@ -5,7 +5,7 @@ set -e
 
 . "$(dirname $(realpath $0))/preprocess.sh"
 
-[[ -w ${rootfs} ]] || { echo "'${rootfs}' does not exists or non-writable"; exit 1; }
+[[ -w ${rootfs} ]] || { echo "${rootfs} does not exists or is unwritable"; exit 1; }
 
 findmnt ${rootfs}tmp/ >/dev/null || mount --types tmpfs tmpfs ${rootfs}tmp/
 findmnt ${rootfs}var/tmp/ >/dev/null || mount --types tmpfs tmpfs ${rootfs}var/tmp/
