@@ -1,5 +1,19 @@
 
+# the default name for chroot directory
 default_instance="default"
+
+# 1: force to update configuration files under ./conf/
+# other val: opposite
+force_update=1
+
+# the patterns of ignored configuration files
+ignore_patterns=("*.swp")
+
+# the parent path of the chroot directory
 rootfs_path_prefix="./rootfs"
+
+# the path to store downloaded stage3 tarballs
 stage3_dir="./stage3-files/"
+
+# the static linked qemu-user mode binary
 static_qemu_bin="/usr/bin/qemu-riscv64"

@@ -30,6 +30,12 @@ files=(
   static_qemu_bin
   )
 
+vars=(
+  default_instance
+  force_update
+  ignore_patterns
+  )
+
 for f in ${dirs[@]} ${files[@]}; do
   if [[ ! ${!f} =~ ^/ ]]; then
     eval "${f}=${myPath}/${!f}"
@@ -60,6 +66,6 @@ for f in ${dirs[@]}; do
 done
 
 # export variables
-for f in ${dirs[@]} ${files[@]}; do
+for f in ${dirs[@]} ${files[@]} ${vars[@]}; do
   eval "export ${f}"
 done

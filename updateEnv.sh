@@ -17,4 +17,26 @@ sed -E 's/@NPROC@/'$(($(nproc) - 2))'/' ${myPath}/conf/make.conf >>${makeConf}
 mkdir -p ${rootfs}etc/portage/package.{use,unmask}
 touch ${rootfs}etc/portage/package.{use,unmask}/zzz
 
+set -x
+
+while read -r testconf; do
+  file=${rootfs}etc/portage/${testconf#${myPath}/conf/}
+  ex=0
+  if [[ ! -e ${file} ]]; then
+    ex=1
+  elif [[ ${force_update} == 1 ]]; then
+    ex=1
+    echo "force update to ${file}"
+  else
+    echo "skip ${testconf}"
+  fi
+  if [[ ${ex} == 1 ]]; then
+    mkdir -p $(dirname ${file})
+    cp ${testconf} ${file}
+  fi
+done <<<"$(eval "find ${myPath}/conf \\( \
+                  ! -name 'make.conf' \
+                  $(for p in ${ignore_patterns[@]};do echo -n " -and ! -name '${p}'"; done) \
+                  -and -type f \\)")"
+
 echo "done."
