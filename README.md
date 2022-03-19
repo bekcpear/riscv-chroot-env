@@ -19,7 +19,7 @@ If possible, it will create BtrFS subvolume, and disable the CoW.
 ./createRootFS.sh
 ```
 
-#### chroot **the daily used*
+#### chroot **(the daily used)**
 
 ```bash
 ./chroot.sh
