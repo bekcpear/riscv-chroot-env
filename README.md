@@ -19,9 +19,9 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
 # modify './env' to set to correct values
 
 # Get the latest stage3 tarball
-./getLatest.sh
+./getLatest.sh # default to use 'rv64_lp64d-openrc'
 
-./createRootFS.sh [instance-name]
+./createRootFS.sh [instance-name] # this name should not be started in a '-'
 ```
 
 #### chroot *(the daily used)*
