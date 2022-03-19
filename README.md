@@ -19,7 +19,7 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
 # modify './env' to set to correct values
 
 # Get the latest stage3 tarball
-./getLast.sh
+./getLatest.sh
 
 ./createRootFS.sh [instance-name]
 ```
@@ -28,7 +28,7 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
 
 ```bash
 ./chroot.sh [instance-name]
-# you can set an alias to it use at any place
+# you can set an alias to use it at any place
 ```
 
 #### update portage config
