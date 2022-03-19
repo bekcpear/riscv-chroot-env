@@ -17,8 +17,6 @@ sed -E 's/@NPROC@/'$(($(nproc) - 2))'/' ${myPath}/conf/make.conf >>${makeConf}
 mkdir -p ${rootfs}etc/portage/package.{use,unmask}
 touch ${rootfs}etc/portage/package.{use,unmask}/zzz
 
-set -x
-
 while read -r testconf; do
   file=${rootfs}etc/portage/${testconf#${myPath}/conf/}
   ex=0
