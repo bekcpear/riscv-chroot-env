@@ -37,9 +37,19 @@ for f in ${dirs[@]} ${files[@]}; do
 done
 
 if [[ -n ${instance} ]]; then
-  rootfs=${rootfs_path_prefix%%/}_${instance}
+  rootfs=${rootfs_path_prefix%%/}/${instance}
 else
-  rootfs=${rootfs_path_prefix%%/}_${default_instance}
+  rootfs=${rootfs_path_prefix%%/}/${default_instance}
+fi
+
+# warn the previous rootfs path has been replaced
+_previous_rootfs=$(<<<${rootfs} sed -E 's/\/([^\/]+)\/?$/_\1/')
+if [[ ! -d ${rootfs} && -d ${_previous_rootfs} ]]; then
+  echo -e "\e[33mthe script has been updated to use a new rootfs path,
+please run:\e[0m"
+  echo -e "\e[36m  mv ${_previous_rootfs} ${rootfs}\e[0m"
+  echo -e "\e[33mto update.\e[0m"
+  exit 1
 fi
 
 unset dirs[0]

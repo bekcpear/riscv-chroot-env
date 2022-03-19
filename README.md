@@ -9,13 +9,13 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
   ```bash
   # can be installed on gentoo linux by:
   echo "app-emulation/qemu static-user QEMU_USER_TARGETS: riscv32 riscv64" >>/etc/portage/package.use/qemu
-  emerge -vj app-emulation/qemu --autounmask # may should do somethings others by yourself here
+  emerge -vj app-emulation/qemu --autounmask # may need to do something more by yourself here
   ```
 * [Register binary format handlers](https://wiki.gentoo.org/wiki/Embedded_Handbook/General/Compiling_with_qemu_user_chroot#Register_binary_format_handlers)
 
 #### init
 
-1. modify './env' to set to correct values
+1. modify './env' to set proper values
 2. option: modify './conf/make.conf' to do custom settings (the default number of jobs is: nproc - 2)
 
 ```bash
