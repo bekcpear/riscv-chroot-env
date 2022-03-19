@@ -1,6 +1,6 @@
 ### RISC-V chroot environment on Gentoo Linux for qemu-user
 
-If possible, it will create BtrFS subvolume, and disable the CoW.
+If possible, it will create a BtrFS subvolume to store the stage3, and disable the CoW.
 
 #### depends on:
 
