@@ -13,8 +13,10 @@ if [[ ${EUID} -ne 0 ]]; then
   exit 1
 fi
 
-instance="${1}"
-shift || true
+if [[ ! ${1} =~ ^- ]]; then
+  instance="${1}"
+  shift || true
+fi
 
 myPath=$(dirname $(realpath $0))
 . "${myPath}/env"
