@@ -19,6 +19,8 @@ else
   mkdir -p ${rootfs}
 fi
 
-set -- tar xpf ${stage3_dir}stage3-*.tar.xz -C ${rootfs} --xattrs-include='*.*' --numeric-owner
+set -- tar xpf ${stage3_dir}stage3-*.tar.xz -C ${rootfs} --xattrs --xattrs-include='*.*' --exclude='./dev/*'
 echo "${@}"
 "${@}"
+
+[[ -x ${rootfs}${static_qemu_bin#/} ]] || cp ${static_qemu_bin} ${rootfs}${static_qemu_bin#/}
