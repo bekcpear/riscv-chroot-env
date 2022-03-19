@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+
+rootfs="./rootfs/"
+stage3_dir="./stage3-files/"
