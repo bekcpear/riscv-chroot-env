@@ -11,6 +11,8 @@ findmnt ${rootfs}tmp/ >/dev/null || mount --types tmpfs tmpfs ${rootfs}tmp/
 findmnt ${rootfs}var/tmp/ >/dev/null || mount --types tmpfs tmpfs ${rootfs}var/tmp/
 setfacl -d -m o::rwx ${rootfs}{var/,}tmp
 
+hostname_suffix=${rootfs##*/rootfs/}
+hostname_suffix=${hostname_suffix%%/}
 #--tmpfs /tmp \
 #--tmpfs /var/tmp \
 ionice -c 3 \
@@ -24,7 +26,7 @@ bwrap \
 --proc /proc \
 --tmpfs /run \
 --perms 1777 --tmpfs /dev/shm \
---unshare-uts --hostname rv-qemuu-${rootfs##*/rootfs/} \
+--unshare-uts --hostname rv-qemuu-${hostname_suffix} \
 "${@}" \
 /bin/bash --login
 
