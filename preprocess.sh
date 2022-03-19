@@ -34,6 +34,7 @@ vars=(
   default_instance
   force_update
   ignore_patterns
+  mirror_url
   )
 
 for f in ${dirs[@]} ${files[@]}; do

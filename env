@@ -15,5 +15,8 @@ rootfs_path_prefix="./rootfs"
 # the path to store downloaded stage3 tarballs
 stage3_dir="./stage3-files/"
 
+# mirror url for gentoo
+mirror_url="https://mirrors.bfsu.edu.cn/gentoo/"
+
 # the static linked qemu-user mode binary
 static_qemu_bin="/usr/bin/qemu-riscv64"
