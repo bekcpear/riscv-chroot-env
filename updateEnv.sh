@@ -12,13 +12,13 @@ echo "preparing environment ..."
 
 makeConf="${rootfs}etc/portage/make.conf"
 sed -Ei '/^###TEST_CONF_START###$/,/^###TEST_CONF_END###$/d' ${makeConf}
-sed -E 's/@NPROC@/'$(($(nproc) - 2))'/' ${myPath}/conf/make.conf >>${makeConf}
+sed -E 's/@NPROC@/'$(($(nproc) - 2))'/' ${myPath}/conf.d/make.conf >>${makeConf}
 
 mkdir -p ${rootfs}etc/portage/package.{use,unmask}
 touch ${rootfs}etc/portage/package.{use,unmask}/zzz
 
 while read -r testconf; do
-  file=${rootfs}etc/portage/${testconf#${myPath}/conf/}
+  file=${rootfs}etc/portage/${testconf#${myPath}/conf.d/}
   ex=0
   if [[ ! -e ${file} ]]; then
     ex=1
@@ -32,7 +32,7 @@ while read -r testconf; do
     mkdir -p $(dirname ${file})
     cp ${testconf} ${file}
   fi
-done <<<"$(eval "find ${myPath}/conf \\( \
+done <<<"$(eval "find ${myPath}/conf.d \\( \
                   ! -name 'make.conf' \
                   $(for p in ${ignore_patterns[@]};do echo -n " -and ! -name '${p}'"; done) \
                   -and -type f \\)")"
