@@ -15,8 +15,10 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
 
 #### init
 
-1. modify './env' to set proper values
-2. option: modify './conf/make.conf' to do custom settings (the default number of jobs is: nproc - 2)
+1. modify `./env` to set proper values
+2. option: add/delete/modify files under `./conf.d/` to do custom settings (the default number of jobs is: nproc - 2),
+   all files under this dir will be pasted to `<chroot-rootfs>/etc/portage/`,
+   except `make.conf`, which will be appended to `<chroot-rootfs>/etc/portage/make.conf`.
 
 ```bash
 # Get the latest stage3 tarball
