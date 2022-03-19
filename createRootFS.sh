@@ -10,7 +10,14 @@ if [[ -e ${rootfs} ]]; then
   exit 0
 fi
 
-btrfs subvolume create ${rootfs}
+_PARENT=$(dirname ${rootfs})
+mkdir -p ${_PARENT}
+if btrfs inspect-internal rootid ${_PARENT} &>/dev/null; then
+  btrfs subvolume create ${rootfs}
+  chattr +C ${rootfs}
+else
+  mkdir -p ${rootfs}
+fi
 
 set -- tar xpf ${stage3_dir}stage3-*.tar.xz -C ${rootfs} --xattrs-include='*.*' --numeric-owner
 echo "${@}"
