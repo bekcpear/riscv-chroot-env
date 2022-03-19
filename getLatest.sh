@@ -10,6 +10,7 @@ URL="${mirror_url%%/}/releases/riscv/autobuilds/"
 TYPE="rv64_lp64d-openrc"
 INFO_TXT="${URL}latest-stage3-${TYPE}.txt"
 
+mkdir -p ${DIR}
 wget -qO ${DIR}info ${INFO_TXT}
 
 STAGE3_PATH=
