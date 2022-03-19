@@ -27,6 +27,7 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
 
 ```bash
 ./chroot.sh
+# you can set an alias to it use at any place
 ```
 
 #### clear tmpfs
