@@ -15,9 +15,10 @@ If possible, it will create a BtrFS subvolume to store the stage3, and disable t
 
 #### init
 
-```bash
-# modify './env' to set to correct values
+1. modify './env' to set to correct values
+2. option: modify './conf/make.conf' to do custom settings (the default number of jobs is: nproc - 2)
 
+```bash
 # Get the latest stage3 tarball
 ./getLatest.sh # default to use 'rv64_lp64d-openrc'
 

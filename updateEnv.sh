@@ -12,7 +12,7 @@ echo "preparing environment ..."
 
 makeConf="${rootfs}etc/portage/make.conf"
 sed -Ei '/^###TEST_CONF_START###$/,/^###TEST_CONF_END###$/d' ${makeConf}
-cat ${myPath}/conf/make.conf >>${makeConf}
+sed -E 's/@NPROC@/'$(($(nproc) - 2))'/' ${myPath}/conf/make.conf >>${makeConf}
 
 mkdir -p ${rootfs}etc/portage/package.{use,unmask}
 touch ${rootfs}etc/portage/package.{use,unmask}/zzz
