@@ -49,7 +49,7 @@ elif [[ ${#select_dirs[@]} -lt 1 || ${select_dirs[0]} == "" ]]; then
   exit 0
 fi
 
-if [[ -d ${select_dirs[0]} ]]; then
+if [[ -d ${select_dirs[0]} && -n ${dir_pattern_seed} ]]; then
   pushingdir=${select_dirs[0]}
 else
   pushingdir=${rootfs}
