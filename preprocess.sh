@@ -28,10 +28,37 @@ if [[ ${EUID} -ne 0 ]]; then
   fi
 fi
 
-if [[ ! ${1} =~ ^- ]]; then
-  instance="${1}"
-  shift || true
+set +e
+unset GETOPT_COMPATIBLE
+getopt -T
+if [[ ${?} != 4 ]]; then
+  echo "The command 'getopt' of Linux version is necessory to parse parameters."
+  exit 1
 fi
+args=$(getopt -o 'fs:c:' -n ${0} -- "$@")
+if [[ ${?} != 0 ]]; then
+  exit 1
+fi
+set -e
+eval "set -- ${args}"
+
+args=
+for arg; do
+  if [[ ${arg} != "--" ]]; then
+    args+="${arg} "
+  else
+    shift
+    break
+  fi
+  shift
+done
+
+if [[ -n ${1} ]]; then
+  instance="${1}"
+  shift
+fi
+
+eval "set -- ${args}"
 
 myPath=$(dirname $(realpath $0))
 . "${myPath}/env"

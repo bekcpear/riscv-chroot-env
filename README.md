@@ -43,9 +43,14 @@ If possible, it will create a BtrFS subvolume as the chroot rootfs, and disable 
 
 ```bash
 # change to the chroot path (still in the host environment)
-./pushDir.sh [instance-name]
+./pushDir.sh [instance-name] [-c <path-string>]
 # you can set an alias to use it at any place
 # it can be executed by a normal user
+
+# if a `-c <path-string>` provided, it will search the PORTAGE_TMPDIR with maxdepth 4,
+# and change into the most matched one.
+# e.g.: ./pushDir.sh -c libre/work
+#       # changed into <chroot-fs>/var/tmp/portage/app-office/libreoffice-7.3.1.3/work/
 ```
 
 #### update portage config
