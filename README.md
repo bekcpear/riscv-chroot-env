@@ -1,6 +1,6 @@
 ### RISC-V chroot environment on Gentoo Linux for qemu-user
 
-If possible, it will create a BtrFS subvolume to store the stage3 files, and disable the CoW feature.
+If possible, it will create a BtrFS subvolume as the chroot rootfs, and disable the CoW feature.
 
 #### depends on:
 
@@ -34,6 +34,15 @@ If possible, it will create a BtrFS subvolume to store the stage3 files, and dis
 ```bash
 ./chroot.sh [instance-name] [extra bwrap options]
 # you can set an alias to use it at any place
+```
+
+#### push dir
+
+```bash
+# change to the chroot path (still in the host environment)
+./pushDir.sh [instance-name]
+# you can set an alias to use it at any place
+# it can be executed by a normal user
 ```
 
 #### update portage config
