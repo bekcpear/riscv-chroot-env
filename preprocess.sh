@@ -12,7 +12,7 @@ if [[ -n ${_PREPROCESSED} ]]; then
 fi
 export _PREPROCESSED=1
 
-if [[ ${EUID} -ne 0 ]]; then
+if [[ ${EUID} -ne 0 && ! $(realpath ${0}) =~ pushDir.sh ]]; then
   echo "should be root user for now!"
   exit 1
 fi
