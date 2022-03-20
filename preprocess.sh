@@ -12,9 +12,20 @@ if [[ -n ${_PREPROCESSED} ]]; then
 fi
 export _PREPROCESSED=1
 
-if [[ ${EUID} -ne 0 && ! $(realpath ${0}) =~ pushDir.sh ]]; then
-  echo "should be root user for now!"
-  exit 1
+if [[ ${EUID} -ne 0 ]]; then
+  continue=0
+  case $(realpath ${0}) in
+    *pushDir.sh)
+      continue=1
+      ;;
+    *getLatest.sh)
+      continue=1
+      ;;
+  esac
+  if [[ ${continue} == 0 ]]; then
+    echo "should be root user for now!"
+    exit 1
+  fi
 fi
 
 if [[ ! ${1} =~ ^- ]]; then

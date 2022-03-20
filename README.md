@@ -69,3 +69,7 @@ If possible, it will create a BtrFS subvolume as the chroot rootfs, and disable 
 ./deleteRootFS.sh [instance-name]
 # the whole rootfs dir will be removed after a 5s countdown
 ```
+
+### TODO
+
+* make it can be runned by normal users
