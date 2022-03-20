@@ -12,6 +12,9 @@ if [[ $# -gt 0 ]]; then
   fi
 fi
 
+[[ -d ${rootfs} && -x ${rootfs} ]] \
+  || { echo "directory ${rootfs} does not exists or is unexecutable"; exit 1; }
+
 eval "$(grep '^[[:space:]]*PORTAGE_TMPDIR=' \
   ${rootfs}usr/share/portage/config/make.globals \
   ${rootfs}etc/portage/make.conf | tail -1 | cut -d':' -f2)"
