@@ -24,9 +24,12 @@ If possible, it will create a BtrFS subvolume as the chroot rootfs, and disable 
 # Get the latest stage3 tarball
 ./getLatest.sh # default to use 'rv64_lp64d-openrc'
 
-./createRootFS.sh [instance-name] # this name should not be started in a '-'
+./createRootFS.sh [instance-name] [-s <source instance>]
+# the instance name should not be started in a '-'
 # if no instance-name val provided, the default is 'default' (same below),
 # and you can change it under the ./env file.
+
+# if a `-s <name/path>` provided, it will create a new chroot fs from the specified one.
 ```
 
 #### chroot *(the daily used)*
