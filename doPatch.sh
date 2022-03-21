@@ -8,7 +8,8 @@ myPath=$(dirname $(realpath $0))
 
 if [[ ! -d ${rootfs} ]]; then
   rootfs=${rootfs%%/}
-  rootfs=${rootfs%/*}/${default_instance%%/}/
+  rootfs=${rootfs%${instance%%/}}
+  rootfs=${rootfs%%/}/${default_instance%%/}/
 fi
 
 [[ -d ${rootfs}etc/portage && -w ${rootfs}etc/portage ]] ||
@@ -16,6 +17,7 @@ fi
 
 set -- "${@}" d3aef8235d8c
 
+patch_action=copy
 while :; do
   case ${1} in
     -a)
@@ -25,10 +27,13 @@ while :; do
       ;;
     -d)
       shift
-      delete_patch=1
+      patch_action=delete
+      ;;
+    -l)
+      shift
+      patch_action=list
       ;;
      -*)
-      shift
       shift
       ;;
     d3aef8235d8c)
@@ -47,13 +52,14 @@ if [[ -z ${dest} ]]; then
 fi
 
 realinstance=${rootfs%%/}
-realinstance=${realinstance##*/}
-if [[ ${realinstance} != ${instance} ]]; then
+realinstance=${realinstance#${rootfs_path_prefix%%/}}
+realinstance=${realinstance##/}
+if [[ ${realinstance} != ${instance%%/} ]]; then
   patches+="${instance}"
 fi
 
 # do some checks
-if [[ ${patches} =~ ^[[:space:]]*$ ]]; then
+if [[ ${patches} =~ ^[[:space:]]*$ && ${patch_action} != "list" ]]; then
   echo "no patch specified!"
   exit 1
 else
@@ -69,13 +75,21 @@ else
   fi
 fi
 
-if [[ -z ${delete_patch} ]]; then
-  mkdir -p ${rootfs}etc/portage/patches/${dest##/}
-  set -- "cp ${patches} ${rootfs}etc/portage/patches/${dest##/}"
-else
-  echo ">>> pushd ${rootfs}etc/portage/patches/${dest##/}"
-  pushd ${rootfs}etc/portage/patches/${dest##/} >/dev/null
-  set -- rm -f ${patches}
-fi
+patches_dir="${rootfs}etc/portage/patches/${dest##/}"
+case ${patch_action} in
+  copy)
+    mkdir -p ${patches_dir}
+    set -- "cp ${patches} ${patches_dir}"
+    ;;
+  delete)
+    echo ">>> pushd ${patches_dir}"
+    pushd ${patches_dir} >/dev/null
+    set -- rm -f ${patches}
+    ;;
+  list)
+    set -- ls -1 ${patches_dir}
+    ;;
+esac
+
 echo ">>> ${@}"
 eval "${@}"

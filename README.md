@@ -57,11 +57,12 @@ If possible, it will create a BtrFS subvolume as the chroot rootfs, and disable 
 
 ```bash
 # copy/remove patches under <chroot fs>/etc/portage/patches/
-./doPatch.sh [instance-name] <patches> [more patches ...] -a <category/pkgname[-verison]> [-d]
+./doPatch.sh [instance-name] <patches> [more patches ...] -a <category/pkgname[-verison]> [-d] [-l]
 # you can set an alias to use it at any place
 # it can be executed by a normal user
 
 # -d: delete specified patches instead of copy
+# -l: list patches under the specified path by '-a'
 ```
 
 #### update portage config

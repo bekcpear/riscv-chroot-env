@@ -32,7 +32,7 @@ if [[ ${?} != 4 ]]; then
   echo "The command 'getopt' of Linux version is necessory to parse parameters."
   exit 1
 fi
-args=$(getopt -o 'fs:c:a:d' -n ${0} -- "$@")
+args=$(getopt -o 'fs:c:a:dl' -n ${0} -- "$@")
 if [[ ${?} != 0 ]]; then
   exit 1
 fi
@@ -62,7 +62,7 @@ myPath=$(dirname $(realpath $0))
 . "${myPath}/env"
 
 dirs=(
-  rootfs_path_prefix # should be at the first place
+  rootfs_path_prefix
   stage3_dir
   )
 
@@ -108,7 +108,6 @@ please run:\e[0m"
   exit 1
 fi
 
-unset dirs[0]
 dirs+=(rootfs)
 # for secure, append a / to dir
 for f in ${dirs[@]}; do
