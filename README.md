@@ -53,6 +53,17 @@ If possible, it will create a BtrFS subvolume as the chroot rootfs, and disable 
 #       # changed into <chroot-fs>/var/tmp/portage/app-office/libreoffice-7.3.1.3/work/
 ```
 
+#### handle patches
+
+```bash
+# copy/remove patches under <chroot fs>/etc/portage/patches/
+./doPatch.sh [instance-name] <patches> [more patches ...] -a <category/pkgname[-verison]> [-d]
+# you can set an alias to use it at any place
+# it can be executed by a normal user
+
+# -d: delete specified patches instead of copy
+```
+
 #### update portage config
 ```bash
 ./updateEnv.sh [instance-name]
