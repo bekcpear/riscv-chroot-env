@@ -23,7 +23,9 @@ dirs=$(LC_ALL=C find ${rootfs}${PORTAGE_TMPDIR##/} -maxdepth 4 -type d)
 
 dir_pattern=
 while read -r p; do
-  dir_pattern+="\/[^\/]*${p}[^\/]*"
+  if [[ ${p} != "" ]]; then
+    dir_pattern+="\/[^\/]*${p}[^\/]*"
+  fi
 done <<<"${dir_pattern_seed//\//$'\n'}"
 
 declare -a select_dirs
