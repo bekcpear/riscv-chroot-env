@@ -60,3 +60,9 @@ echo "${@}"
 "${@}"
 
 ${myPath}/updateEnv.sh
+
+# make others can modify /etc/portage dir
+find ${rootfs}etc/portage -type d -exec setfacl -m o::rwx '{}' \;
+find ${rootfs}etc/portage -type f -exec setfacl -m o::rw '{}' \;
+setfacl -R -d -m o::rwx ${rootfs}etc/portage
+

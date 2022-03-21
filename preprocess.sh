@@ -15,10 +15,7 @@ export _PREPROCESSED=1
 if [[ ${EUID} -ne 0 ]]; then
   continue=0
   case $(realpath ${0}) in
-    *pushDir.sh)
-      continue=1
-      ;;
-    *getLatest.sh)
+    *pushDir.sh|*getLatest.sh|*doPatch.sh)
       continue=1
       ;;
   esac
@@ -35,7 +32,7 @@ if [[ ${?} != 4 ]]; then
   echo "The command 'getopt' of Linux version is necessory to parse parameters."
   exit 1
 fi
-args=$(getopt -o 'fs:c:' -n ${0} -- "$@")
+args=$(getopt -o 'fs:c:a:d' -n ${0} -- "$@")
 if [[ ${?} != 0 ]]; then
   exit 1
 fi
@@ -58,6 +55,7 @@ if [[ -n ${1} ]]; then
   shift
 fi
 
+args+="$*"
 eval "set -- ${args}"
 
 myPath=$(dirname $(realpath $0))
