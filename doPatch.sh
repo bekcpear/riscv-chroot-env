@@ -63,15 +63,17 @@ if [[ ${patches} =~ ^[[:space:]]*$ && ${patch_action} != "list" ]]; then
   echo "no patch specified!"
   exit 1
 else
-  for patch in ${patches}; do
-    if [[ ! -f ${patch} ]]; then
-      invalid_patches+=$'\n'"  ${patch}"
+  if [[ ${patch_action} == "copy" ]]; then
+    for patch in ${patches}; do
+      if [[ ! -f ${patch} ]]; then
+        invalid_patches+=$'\n'"  ${patch}"
+      fi
+    done
+    if [[ -n ${invalid_patches} ]]; then
+      echo "only regular file allowed!"
+      echo "invalid: ${invalid_patches}"
+      exit 1
     fi
-  done
-  if [[ -n ${invalid_patches} ]]; then
-    echo "only regular file allowed!"
-    echo "invalid: ${invalid_patches}"
-    exit 1
   fi
 fi
 
