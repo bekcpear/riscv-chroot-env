@@ -52,6 +52,23 @@ if [[ ${realinstance} != ${instance} ]]; then
   patches+="${instance}"
 fi
 
+# do some checks
+if [[ ${patches} =~ ^[[:space:]]*$ ]]; then
+  echo "no patch specified!"
+  exit 1
+else
+  for patch in ${patches}; do
+    if [[ ! -f ${patch} ]]; then
+      invalid_patches+=$'\n'"  ${patch}"
+    fi
+  done
+  if [[ -n ${invalid_patches} ]]; then
+    echo "only regular file allowed!"
+    echo "invalid: ${invalid_patches}"
+    exit 1
+  fi
+fi
+
 if [[ -z ${delete_patch} ]]; then
   mkdir -p ${rootfs}etc/portage/patches/${dest##/}
   set -- "cp ${patches} ${rootfs}etc/portage/patches/${dest##/}"
